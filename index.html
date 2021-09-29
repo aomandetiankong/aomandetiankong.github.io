@@ -64,6 +64,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-指针，结构与函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2021-09-29T06:51:58.000Z" itemprop="datePublished">2021-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">指针，结构与函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>指针与函数的变量交换<br>void swap(int <em>px,int</em>py)<br>{<br>int t;<br>t=*px;<br>*px=<em>py;<br><em>py=t}<br>ps:通过指针实现了变量从函数中的输出，倘若不使用指针，则函数中交换的只是主函数中变量的克隆体，<br>无法返回至主函数中。即必须交换</em>px与</em>py的值</p>
+<p>结构与函数的变量改变<br>1.struct point{<br>int x;<br>int y;<br>}struct point getstruct(void);<br>int main{<br>struct point y={0,0};<br>y=getstruct();  }    \此处使主函数中的y直接＝函数中返回的结构变量来达到改变主函数变量的目的<br>struct point getstruct(void)<br>{<br>struct point p;<br>scanf(“%d %d”,&amp;p.x,&amp;p.y);<br>return p;<br>}<br>2..struct point{<br>int x;<br>int y;<br>}struct point <em>getstruct(struct point</em>);<br>int main{<br>struct point y={0,0};<br>getstruct(&amp;y);<br> }<br>struct point <em>getstruct(struct point</em>)<br>scanf(“%d %d”,&amp;p-&gt;x,&amp;p-&gt;y);<br>printf(“%d %d”,p-&gt;x,p-&gt;y);<br>return p;\使用结构指针来使得结构变量变化 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="cku566rm00002ccwbgtpq7fuv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-求数组位数的方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-date">
@@ -92,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="cktz367hw0002v4wb6ffh3rg0" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="cku566rm30004ccwba7j4gdpl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="cktz367hx0003v4wb5ns92zxb" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="cku566rm20003ccwb12wm96nh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cktz367hx0004v4wb9yao9lfn" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cku566rm40005ccwbctp0dsje" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="cktz367hr0000v4wbfayy1z8i" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="cku566rlu0000ccwbehf9efa7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="cktz367hu0001v4wbfqnvfuhk" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="cku566rlz0001ccwb7mca1x15" class="article-share-link">Share</a>
       
       
     </footer>
@@ -292,6 +330,10 @@
       <ul>
         
           <li>
+            <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">指针，结构与函数</a>
+          </li>
+        
+          <li>
             <a href="/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">求数组位数的方法</a>
           </li>
         
@@ -305,10 +347,6 @@
         
           <li>
             <a href="/2021/09/18/My/">My</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/18/hello-world/">Hello World</a>
           </li>
         
       </ul>
