@@ -64,6 +64,43 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-黑盾杯学习1（登录框问题）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" class="article-date">
+  <time datetime="2021-10-21T09:05:38.000Z" itemprop="datePublished">2021-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习1（登录框问题）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、遇到登录框(先查看源码)<br>1.考虑万能密码——用户名任意，密码为’or’1’=’1<br>2.出现本地管理员，则应想到本地网口127.0.0.1，构造一个数据包（http请求包x-forwared-for：cilent-ip，<br>proxy-ip——记录数据包经过的代理服务器的地址）ps：管理员系统用户名可能为admin<br>！！！源代码需注意右边有无滑滑，防止其放置多个空行<br>若出现base64 md5 url等编码   若有字母大小写，数字，结尾两个==则为base64后寻找在线解码器且解码结果则为账号/密码<br>而后打开火狐开始burpsuit，打开proxy进行拦截抓包后发送给重发器并在user前输入X-Forwarded-For:127.0.0.1（与user之间必须空一行）<br>如弹出再试一次，则将上面的密码输入再次发送<br>！！暴力破解<br>打开Burp，抓包后右键send to intruder。设置目标地址和端口后，打开positions，Attack type选择Sniper，<br>然后选择password，在username处直接输入admin在payload里面设置Payload选Simple list，将密码字典导入，start attack。<br>完成后，按Length排列，发现密码是123456时长度和其他不同，所以直接查看response，发现答案。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckv0q0tmg00035gwbh6ff4i8m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-指针，结构与函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" class="article-date">
@@ -92,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="cku56e51o00055kwb1gdw3p0l" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckv0q0tmd00015gwb1k6r6yxk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="cku56e51e00015kwbeefeeatk" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckv0q0tmh00065gwba7575go1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="cku56e51o00045kwb0cc8b5ih" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckv0q0tmg00045gwb48662s6e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cku56e51f00025kwbhv8teicx" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckv0q0tmh00055gwbcon16ky3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="cku56e51900005kwbgs7k7vm3" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckv0q0tmf00025gwb0dtj28bl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -289,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="cku56e51g00035kwbbldvhck1" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckv0q0tma00005gwbckd8afw4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +354,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
     </div>
   </div>
 
@@ -328,6 +365,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习1（登录框问题）</a>
+          </li>
         
           <li>
             <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">指针，结构与函数</a>
@@ -343,10 +384,6 @@
         
           <li>
             <a href="/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/18/My/">My</a>
           </li>
         
       </ul>

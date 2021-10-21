@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  <icon>https://aomandetiankong.github.io/icon.png</icon>
+  
+  <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://aomandetiankong.github.io/"/>
+  <updated>2021-10-21T09:07:02.070Z</updated>
+  <id>https://aomandetiankong.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>黑盾杯学习1（登录框问题）</title>
+    <link href="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/"/>
+    <id>https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/</id>
+    <published>2021-10-21T09:05:38.000Z</published>
+    <updated>2021-10-21T09:07:02.070Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一、遇到登录框(先查看源码)&lt;br&gt;1.考虑万能密码——用户名任意，密码为’or’1’=’1&lt;br&gt;2.出现本地管理员，则应想到本地网口127.0.0.1，构造一个数据包（http请求包x-forwared-for：cilent-ip，&lt;br&gt;proxy-ip——记录数据包</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>指针，结构与函数</title>
+    <link href="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/"/>
+    <id>https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/</id>
+    <published>2021-09-29T06:51:58.000Z</published>
+    <updated>2021-09-29T07:11:04.323Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;指针与函数的变量交换&lt;br&gt;void swap(int &lt;em&gt;px,int&lt;/em&gt;py)&lt;br&gt;{&lt;br&gt;int</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>求数组位数的方法</title>
+    <link href="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/</id>
+    <published>2021-09-24T07:04:18.000Z</published>
+    <updated>2021-09-25T00:59:09.609Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;1.int a[]={1,2,3,4,5,};&lt;br&gt;int lenghth=sizeof(a)/sizeof(a[0]);&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>newpapername</title>
+    <link href="https://aomandetiankong.github.io/2021/09/18/newpapername/"/>
+    <id>https://aomandetiankong.github.io/2021/09/18/newpapername/</id>
+    <published>2021-09-18T01:59:49.000Z</published>
+    <updated>2021-09-18T02:09:03.985Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;##第一章&lt;/p&gt;
+&lt;p&gt;内容&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一篇文章</title>
+    <link href="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <id>https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</id>
+    <published>2021-09-18T01:47:43.000Z</published>
+    <updated>2021-09-18T01:47:43.146Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>My</title>
+    <link href="https://aomandetiankong.github.io/2021/09/18/My/"/>
+    <id>https://aomandetiankong.github.io/2021/09/18/My/</id>
+    <published>2021-09-18T01:44:43.000Z</published>
+    <updated>2021-09-18T01:44:43.319Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://aomandetiankong.github.io/2021/09/18/hello-world/"/>
+    <id>https://aomandetiankong.github.io/2021/09/18/hello-world/</id>
+    <published>2021-09-17T16:24:26.958Z</published>
+    <updated>2021-09-17T16:23:36.305Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
