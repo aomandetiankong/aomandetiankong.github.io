@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2021-10-21T09:07:02.070Z</updated>
+  <updated>2021-10-27T05:09:47.506Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>黑盾杯学习2（文件包含问题）</title>
+    <link href="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/"/>
+    <id>https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/</id>
+    <published>2021-10-27T05:08:13.000Z</published>
+    <updated>2021-10-27T05:09:47.506Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;ps:原题为攻防世界web进阶第四题&lt;br&gt;Web php</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>黑盾杯学习1（登录框问题）</title>

@@ -64,6 +64,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-黑盾杯学习2（文件包含问题）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="article-date">
+  <time datetime="2021-10-27T05:08:13.000Z" itemprop="datePublished">2021-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习2（文件包含问题）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ps:原题为攻防世界web进阶第四题<br>Web php include文件包含问题<br>查看源码，进行分析<br>发现hello变量和page变量<br>Page过滤了php://<br>在网址后加上？与变量=传输内容<br>文件包含<br>Php伪协议php://input 把想构造的东西通过post传入<br>Php://fitter/ 写入，写出文件<br>data://text/plain 与1类似<br>！应对过滤方法<br>1.大小写改动<br>2.更换输入方式，例如php改成data<br>F12打开hackbar<br>√postdata<br>然后开始尝试ls执行系统命令php   <?php system('ls')?><br>2.在后面加入&amp;page=PHP://input后尝试抓包 并写上<?php system('ls')?><br>若ls成功，则为linux环境输入cat 文件名<br>—————————————————–方法分割线——————————————————-<br>方法二，采用data://text/plain</p>
+<p>格式为page=data://text/plain；base64，将<?php system('ls')?>编码即为PD9waHAgc3lzdGVtKCdscycpPz4=<br>接着打开hackbar 下面一样输入 <?php system('ls')?><br>最后将cat 文件名也改成base64形式将url中base64后的改成cat 文件名的base64形式<br>若无反应再查看源代码即可<br>data://text/plain;base64,PD9waHAgc3lzdGVtKCdscycpPz4=</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckv926p3h0004tgwb7xvg6xgq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-黑盾杯学习1（登录框问题）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" class="article-date">
@@ -91,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckv0q6cvn00062cwbcwtm5jeb" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckv926p3i0006tgwbeq6gcwc2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -129,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckv0q6cvm00042cwb88vqaa1f" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckv926p3g0002tgwbbg3e0tvt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -167,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckv0q6cvm00052cwb9mc6df2i" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckv926p3j0007tgwb0iof9qo3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckv0q6cvk00022cwbd348h9hw" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckv926p3f0001tgwb1p389k9j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckv0q6cvl00032cwbc0xk1dq9" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckv926p3h0003tgwbgx6z0cxs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -277,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckv0q6cvf00002cwb849u9k3h" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckv926p3i0005tgwb6xaa61gb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -326,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckv0q6cvj00012cwbh9vige6a" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckv926p3b0000tgwbe4cq8igx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,6 +405,10 @@
       <ul>
         
           <li>
+            <a href="/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习2（文件包含问题）</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习1（登录框问题）</a>
           </li>
         
@@ -380,10 +422,6 @@
         
           <li>
             <a href="/2021/09/18/newpapername/">newpapername</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
           </li>
         
       </ul>
