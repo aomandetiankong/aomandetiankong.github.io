@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2021-11-03T13:41:40.430Z</updated>
+  <updated>2021-11-22T14:38:52.421Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sql学习1</title>
+    <link href="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/"/>
+    <id>https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/</id>
+    <published>2021-11-22T14:36:40.000Z</published>
+    <updated>2021-11-22T14:38:52.421Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;sql 1&lt;br&gt;常见手动 sql 注入的闭合方式&lt;br&gt;or 1=1&lt;br&gt;‘or 1=1&lt;br&gt;“or 1=1&lt;br&gt;)or 1=1&lt;br&gt;‘)or 1=1&lt;br&gt;“) or 1=1&lt;br&gt;“))or 1=1&lt;/p&gt;
+&lt;p&gt;具体使用哪种方式取决于</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>黑盾杯学习3（文件包含问题）</title>
