@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2021-11-22T14:38:52.421Z</updated>
+  <updated>2021-11-28T05:19:49.525Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sql2</title>
+    <link href="https://aomandetiankong.github.io/2021/11/28/sql2/"/>
+    <id>https://aomandetiankong.github.io/2021/11/28/sql2/</id>
+    <published>2021-11-28T05:19:16.000Z</published>
+    <updated>2021-11-28T05:19:49.525Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;布尔盲注 他只会根据返回的 True 和 False，根据结果判断是否和自己输入的值一致从而猜解出完整的数据。&lt;br&gt;?id=1’ and (length(database())=n) –+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>sql学习1</title>

