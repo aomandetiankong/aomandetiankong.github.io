@@ -5,17 +5,13 @@
   
 
   
-  <title>指针，结构与函数 | Hexo</title>
+  <title>Archives: 2021/12 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="指针与函数的变量交换void swap(int px,intpy){int t;t&#x3D;*px;*px&#x3D;py;py&#x3D;t}ps:通过指针实现了变量从函数中的输出，倘若不使用指针，则函数中交换的只是主函数中变量的克隆体，无法返回至主函数中。即必须交换px与py的值 结构与函数的变量改变1.struct point{int x;int y;}struct point getstruct(void);int">
-<meta property="og:type" content="article">
-<meta property="og:title" content="指针，结构与函数">
-<meta property="og:url" content="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://aomandetiankong.github.io/archives/2021/12/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="指针与函数的变量交换void swap(int px,intpy){int t;t&#x3D;*px;*px&#x3D;py;py&#x3D;t}ps:通过指针实现了变量从函数中的输出，倘若不使用指针，则函数中交换的只是主函数中变量的克隆体，无法返回至主函数中。即必须交换px与py的值 结构与函数的变量改变1.struct point{int x;int y;}struct point getstruct(void);int">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-29T06:51:58.000Z">
-<meta property="article:modified_time" content="2021-09-29T07:11:04.323Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -66,62 +62,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-指针，结构与函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" class="article-date">
-  <time datetime="2021-09-29T06:51:58.000Z" itemprop="datePublished">2021-09-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      指针，结构与函数
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2021/12/06/mysql%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  <time datetime="2021-12-06T15:01:28.000Z" itemprop="datePublished">Dec 6</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/12/06/mysql%E5%AD%A6%E4%B9%A0/">mysql学习</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>指针与函数的变量交换<br>void swap(int <em>px,int</em>py)<br>{<br>int t;<br>t=*px;<br>*px=<em>py;<br><em>py=t}<br>ps:通过指针实现了变量从函数中的输出，倘若不使用指针，则函数中交换的只是主函数中变量的克隆体，<br>无法返回至主函数中。即必须交换</em>px与</em>py的值</p>
-<p>结构与函数的变量改变<br>1.struct point{<br>int x;<br>int y;<br>}struct point getstruct(void);<br>int main{<br>struct point y={0,0};<br>y=getstruct();  }    \此处使主函数中的y直接＝函数中返回的结构变量来达到改变主函数变量的目的<br>struct point getstruct(void)<br>{<br>struct point p;<br>scanf(“%d %d”,&amp;p.x,&amp;p.y);<br>return p;<br>}<br>2..struct point{<br>int x;<br>int y;<br>}struct point <em>getstruct(struct point</em>);<br>int main{<br>struct point y={0,0};<br>getstruct(&amp;y);<br> }<br>struct point <em>getstruct(struct point</em>)<br>scanf(“%d %d”,&amp;p-&gt;x,&amp;p-&gt;y);<br>printf(“%d %d”,p-&gt;x,p-&gt;y);<br>return p;\使用结构指针来使得结构变量变化 </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" data-id="ckwusz0tn0009pkwbdhqmexaa" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          黑盾杯学习1（登录框问题）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">求数组位数的方法</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
