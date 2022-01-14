@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2021-12-06T15:02:33.863Z</updated>
+  <updated>2022-01-14T15:01:15.506Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql复习</title>
+    <link href="https://aomandetiankong.github.io/2022/01/14/mysql%E5%A4%8D%E4%B9%A0/"/>
+    <id>https://aomandetiankong.github.io/2022/01/14/mysql%E5%A4%8D%E4%B9%A0/</id>
+    <published>2022-01-14T13:43:18.000Z</published>
+    <updated>2022-01-14T15:01:15.506Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;好久没更新博客了，不能再摆烂了，寒假第一篇先复习一下mysql相关指令&lt;br&gt;以下为创建数据表 runoob_tbl 实例:&lt;br&gt;root@host# mysql -u root -p&lt;br&gt;Enter password:*******&lt;br&gt;mysql&amp;gt; use</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>mysql学习</title>
