@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2022-01-17T08:32:58.797Z</updated>
+  <updated>2022-02-03T12:45:22.985Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web基础知识1</title>
+    <link href="https://aomandetiankong.github.io/2022/02/03/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/"/>
+    <id>https://aomandetiankong.github.io/2022/02/03/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/</id>
+    <published>2022-02-03T12:40:27.000Z</published>
+    <updated>2022-02-03T12:45:22.985Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Content-type首部类型&lt;br&gt;http属于应用层（基于TCP）&lt;br&gt;默认为持久连接，服务器返回消息，客户端可以继续发起下一个请求，如果没有要发送的了，客户端最后发送connecttion：close首部给服务器，这样就会进行关闭&lt;br&gt;http无状态：服务器不会</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>http学习1</title>
