@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2022-02-03T12:45:22.985Z</updated>
+  <updated>2022-02-05T02:49:53.510Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web</title>
+    <link href="https://aomandetiankong.github.io/2022/02/05/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862/"/>
+    <id>https://aomandetiankong.github.io/2022/02/05/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862/</id>
+    <published>2022-02-05T02:47:51.000Z</published>
+    <updated>2022-02-05T02:49:53.510Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;TCP三次握手和四次挥手&lt;/p&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>web基础知识1</title>

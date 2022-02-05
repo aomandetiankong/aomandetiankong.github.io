@@ -146,6 +146,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">指针，结构与函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-09-29 14:51:58 / Modified: 15:11:04" itemprop="dateCreated datePublished" datetime="2021-09-29T14:51:58+08:00">2021-09-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>指针与函数的变量交换<br>void swap(int <em>px,int</em>py)<br>{<br>int t;<br>t=*px;<br>*px=<em>py;<br><em>py=t}<br>ps:通过指针实现了变量从函数中的输出，倘若不使用指针，则函数中交换的只是主函数中变量的克隆体，<br>无法返回至主函数中。即必须交换</em>px与</em>py的值</p>
+<p>结构与函数的变量改变<br>1.struct point{<br>int x;<br>int y;<br>}struct point getstruct(void);<br>int main{<br>struct point y={0,0};<br>y=getstruct();  }    \此处使主函数中的y直接＝函数中返回的结构变量来达到改变主函数变量的目的<br>struct point getstruct(void)<br>{<br>struct point p;<br>scanf(“%d %d”,&amp;p.x,&amp;p.y);<br>return p;<br>}<br>2..struct point{<br>int x;<br>int y;<br>}struct point <em>getstruct(struct point</em>);<br>int main{<br>struct point y={0,0};<br>getstruct(&amp;y);<br> }<br>struct point <em>getstruct(struct point</em>)<br>scanf(“%d %d”,&amp;p-&gt;x,&amp;p-&gt;y);<br>printf(“%d %d”,p-&gt;x,p-&gt;y);<br>return p;\使用结构指针来使得结构变量变化 </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/09/24/%E6%B1%82%E6%95%B0%E7%BB%84%E4%BD%8D%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -522,7 +582,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
