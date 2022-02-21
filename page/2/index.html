@@ -146,6 +146,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">黑盾杯学习1（登录框问题）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-21 17:05:38 / Modified: 17:07:02" itemprop="dateCreated datePublished" datetime="2021-10-21T17:05:38+08:00">2021-10-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一、遇到登录框(先查看源码)<br>1.考虑万能密码——用户名任意，密码为’or’1’=’1<br>2.出现本地管理员，则应想到本地网口127.0.0.1，构造一个数据包（http请求包x-forwared-for：cilent-ip，<br>proxy-ip——记录数据包经过的代理服务器的地址）ps：管理员系统用户名可能为admin<br>！！！源代码需注意右边有无滑滑，防止其放置多个空行<br>若出现base64 md5 url等编码   若有字母大小写，数字，结尾两个==则为base64后寻找在线解码器且解码结果则为账号/密码<br>而后打开火狐开始burpsuit，打开proxy进行拦截抓包后发送给重发器并在user前输入X-Forwarded-For:127.0.0.1（与user之间必须空一行）<br>如弹出再试一次，则将上面的密码输入再次发送<br>！！暴力破解<br>打开Burp，抓包后右键send to intruder。设置目标地址和端口后，打开positions，Attack type选择Sniper，<br>然后选择password，在username处直接输入admin在payload里面设置Payload选Simple list，将密码字典导入，start attack。<br>完成后，按Length排列，发现密码是123456时长度和其他不同，所以直接查看response，发现答案。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/09/29/%E6%8C%87%E9%92%88%EF%BC%8C%E7%BB%93%E6%9E%84%E4%B8%8E%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -582,7 +641,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

