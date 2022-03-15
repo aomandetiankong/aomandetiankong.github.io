@@ -27,13 +27,10 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Brute Force审计后台代码，并未做出什么限制，使用万能密码或抓包进行爆破即可破解相比Low级别的代码，Medium级别的代码主要增加了mysql_real_escape_string函数，这个函数会对字符串中的特殊符号（x00，n，r，，’，”，x1a）进行转义，基本上能够抵御sql注入攻击HIgh对于有token来防护csrf的，可以使用到这个功能进行爆破，因为每次用户的token都是随">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://aomandetiankong.github.io/2022/02/27/dvwa/x">
-<meta property="og:image" content="https://aomandetiankong.github.io/2022/02/27/dvwa/x">
 <meta property="article:published_time" content="2022-02-26T17:53:49.000Z">
-<meta property="article:modified_time" content="2022-03-14T13:21:58.605Z">
+<meta property="article:modified_time" content="2022-03-15T02:55:32.879Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://aomandetiankong.github.io/2022/02/27/dvwa/x">
 
 <link rel="canonical" href="https://aomandetiankong.github.io/2022/02/27/dvwa/">
 
@@ -184,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-14 21:21:58" itemprop="dateModified" datetime="2022-03-14T21:21:58+08:00">2022-03-14</time>
+                <time title="Modified: 2022-03-15 10:55:32" itemprop="dateModified" datetime="2022-03-15T10:55:32+08:00">2022-03-15</time>
               </span>
 
           
@@ -205,20 +202,7 @@
 <p>Weak Session IDs<br>抓包后在hackbar中填入cookie<br>Mid使用时间戳<br>if ($_SERVER[‘REQUEST_METHOD’] == “POST”) { $cookie_value = time();<br>High<br>setcookie(name,value,expire,path,domain,secure,httponly)<br>oname 必需。规定cookie的名称。<br>ovalue 必需。规定cookie的值。<br>oexpire 可选。规定cookie的有效期。<br>opath 可选。规定cookie的服务器路径。<br>odomain 可选。规定cookie的域名。<br>osecure 可选。规定是否通过安全的HTTPS连接来传cookie。<br>ohttponly 可选。规定是否Cookie仅可通过HTTP协议访问。<br>不仅使用到了加1和md5进行加密<br>Xss dos</p>
 <script>alert(document.cookie)</script>
 <p>在url后面加入这个则可弹窗出括号内内容或者xx＝<br>添加了php后端过滤，查找&lt;script字符串在default变量值中第一次出现的位置（不区分大小写），如果匹配则手动将defalut改成English。<br>这里我们就不能直接写入JS脚本了，这个难度下我们可以通过闭合标签来解决这个问题：</p>
-<img src="/2022/02/27/dvwa/x" onerror="alert(document.cookie)">
-<iframe onload="alert(document.cookie)">
-<img src="/2022/02/27/dvwa/x" onerror="alert(document.cookie)">
-    
-<p>High对default的值进行了白名单处理可以用&amp;连接另一个自定义变量或者用#借助注释进行绕过：&amp;a=<script>alert(document.cookie)</script><br>#<script>alert(document.cookie)</script><br>reflected-XSS<br>反射型和DOM型的XSS差别主要在于，反射型是会往后台服务器发送请求，而DOM型直接在前端进行解析；<br>和dos差不多<br>Stored-XSS<br>由于是储存型XSS，所以要记得在注入后及时删除，不然会影响后面难度的注入。<br>这个页面看起来就很像留言板了，后端也是没有什么过滤，因此我们可以在massage中写入恶意JS脚本：<br>CSP简单理解就是白名单，是浏览器的安全策略。如果标签或服务器中返回的HTTP头中有Content-Security-Policy标签，浏览器就会根据其判断哪些网页资源可以被解析执行。CSP极大提升了网页的安全性，针对XSS起到了极大作用。<br>Easy查看后端php或者html头都可以发现允许包含的url为self、pastebin.com、hastebin.com、jquery和google analytics。我们依次访问（需要魔法上网）可以发现其中pastebin.com是一个文本分享的网站，我们可以通过在该网站写入一个恶意JS脚本，再通过靶场的包含将JS包含进去。<br>写入并创建恶意JS脚本，然后点击raw生成url：<br>Mid错误提示告诉我们, 因为头部指定了 nonce 值, 所以自动忽略了 ‘unsafe-inline’ 这个参数. 因此可以判断这两个参数是不能共存的, 而且如果共存, 后者是会覆盖前者的. 正确的防御方式下的 nonce 值不应该是个固定值, 而是应该是个随机生成的值, 这样才能真正达到防止 XSS 的目的.<br>$headerCSP = “Content-Security-Policy: script-src ‘self’ ‘unsafe-inline’ ‘nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=’;”;<br>这里面没有可以类似于上一难度中可以直接包含的网页，但是有一个关键：nonce。<br>script-src是可以设置一些特殊值的：<br>ounsafe-inline：允许执行页面内嵌的<script>标签和事件监听函数<br>ounsafe-eval：允许将字符串当作代码执行，比如使用eval、setTimeout、setInterval和Function等函数。<br>ononce：每次HTTP回应给出一个授权token，页面内嵌脚本必须有这个 token，才会执行<br>ohash：列出允许执行的脚本代码的Hash值，页面内嵌脚本的哈希值只有吻合的情况下，才能执行。<br>ps.nonce值和hash值还可以用在style-src选项，控制页面内嵌的样式表</p>
-<script nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=">alert(document.cookie)</script>
 
-</p><p>当按下按钮后，触发id=”slove”，即触发click事件使得clickButton()执行，使得一个新的<script>标签作为<body>中的子元素写入，内容是src = "source/jsonp.php?callback=solveSum"，因此我们会发现html中多出了一行：</p>
-<p>这样浏览器就会发起请求：<br>    <a target="_blank" rel="noopener" href="http://127.0.0.1/vulnerabilities/csp/source/jsonp.php?callback=solveSum">http://127.0.0.1/vulnerabilities/csp/source/jsonp.php?callback=solveSum</a><br>我们来访问一下这个url：</p>
-<p>浏览器收到请求过后收到answer值，这个值通过solveSum()返回到页面中，得到了15.<br>那么了解到整个原理之后，我们就可以开始思考注入方式了。我们知道当callback=solveSum时触发了这个函数，那么我们是不是可以自己写入一点东西进去，例如：<br>    ?callback=alert(documemt.cookie)</p>
-<p>我们发现这样JS就被写入了，但是我们应该如何注入呢，我们发现后端php中有这么一行：<br>    &lt;?php<br>if (isset ($_POST[‘include’])) {<br>$page[ ‘body’ ] .= “<br>    “ . $_POST[‘include’] . “<br>“;<br>}<br>POST提交的include参数会包含到<body>中</p>
-<p>成功。<br>include=&lt;script src=source/jsonp.php?callback=alert(document.cookie)&gt;</script><br>JS<br>Easy审计代码，MD5（rot13（））<br>先进行rot13再进行md5而后一一尝试<br>2.用浏览器console<br>按F12，一般会出现Elements，我们进入Console模式<br>输入alert(md5(rot13(“success”)))后，回车搞定而后抓包修改数值即可<br>复现过程-High<br>从源码得知，生成 token 的步骤是：</p>
-<p>1、执行token_part_1(“ABCD”, 44)<br>2、执行token_part_2(“XX”)(原本是延迟 300ms执行的那个）<br>3、点击按钮的时候执行 token_part_3<br>所以思路是输入框输入success在Console执行<br>token_part_1(“ABCD”, 44)<br>oken_part_2(“XX”)<br>提交<br>复现过程-Medium<br>看代码的逻辑，token为<br>alert(do_something(“XX”+‘success’+“XX”));<br>在Console中执行</p>
-</iframe>
     </div>
 
     
